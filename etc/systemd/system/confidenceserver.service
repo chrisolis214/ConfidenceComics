@@ -7,6 +7,7 @@ User=root
 Group=root
 ExecStart=/usr/bin/confidenceserver start
 ExecStop=/usr/bin/confidenceserver stop
+ExecReload=/usr/bin/confidenceserver restart
 
 [Install]
 WantedBy=multi-user.target

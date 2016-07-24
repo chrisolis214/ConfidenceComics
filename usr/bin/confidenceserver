@@ -14,12 +14,12 @@ GROUP="root"
 case $1 in
     start)
         echo "Starting Web Server"
-        sudo start-stop-daemon --start --chuid "root:root" --background --make-pidfile --pidfile /var/run/ConfidenceServer/$NAME.pid --exec "$APPBIN/$APPNAME" || true
+        start-stop-daemon --start --chuid "root:root" --background --make-pidfile --pidfile /var/run/ConfidenceServer/$NAME.pid --exec "$APPBIN/$APPNAME"
         echo "Started"
         ;;
     stop)
         echo "Stopping Web Server"
-        start-stop-daemon --stop --pidfile /var/run/ConfidenceServer/$NAME.pid || true
+        start-stop-daemon --stop --pidfile /var/run/ConfidenceServer/$NAME.pid
         echo "Stopped"
         ;;
     restart)
