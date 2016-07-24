@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Include functions
+set -e
+. /lib/lsb/init-functions
+
+NAME="confidenceserver"
+APPNAME="ConfidenceComics"
+GOPATH="/home/chris/Go_Work"
+APPBIN="$GOPATH/bin"
+USER="root"
+GROUP="root"
+
+case $1 in
+    start)
+        echo "Starting Web Server"
+        sudo start-stop-daemon --start --chuid "root:root" --background --make-pidfile --pidfile /var/run/ConfidenceServer/$NAME.pid --exec "$APPBIN/$APPNAME" || true
+        echo "Started"
+        ;;
+    stop)
+        echo "Stopping Web Server"
+        start-stop-daemon --stop --pidfile /var/run/ConfidenceServer/$NAME.pid || true
+        echo "Stopped"
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    status)
+        status_of_proc -p /var/run/ConfidenceServer/$NAME.pid
+        ;;
+    *)
+        echo "Go Server for Web App"
+        echo $"Usage $0 {start|stop|restart|status}"
+        exit 1
+esac
+exit 0

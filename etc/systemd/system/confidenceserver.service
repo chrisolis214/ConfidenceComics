@@ -1,0 +1,12 @@
+[Unit]
+Description=golang server initialization
+
+[Service]
+PIDFile=/var/run/ConfidenceServer/confidenceserver.pid
+User=root
+Group=root
+ExecStart=/usr/bin/confidenceserver start
+ExecStop=/usr/bin/confidenceserver stop
+
+[Install]
+WantedBy=multi-user.target
